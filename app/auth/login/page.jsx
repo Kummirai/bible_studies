@@ -39,13 +39,13 @@ const page = () => {
       <p className="text-center font-bold text-slate-600">OR</p>
       <div>
         <button className="border border-gray-600 text-gray-900 w-[100%] p-2 rounded-md hover:bg-gray-800 mb-4 hover:cursor-pointer hover:text-white">
-          Sign in with Google
+          Log in with Google
         </button>
         <button className="border border-gray-600 text-gray-900 w-[100%] p-2 rounded-md hover:bg-gray-800 mb-4 hover:cursor-pointer hover:text-white">
-          Sign in with Facebook
+          Log in with Facebook
         </button>
         <button className="border border-gray-600 text-gray-900 w-[100%] p-2 rounded-md hover:bg-gray-800 mb-4 hover:cursor-pointer hover:text-white">
-          Sign in with Apple
+          Log in with Apple
         </button>
       </div>
       <Link
