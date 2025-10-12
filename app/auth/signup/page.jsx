@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const page = () => {
   return (
-    <div className="flex flex-col max-w-md p-4 mx-auto mt-10">
+    <div className="flex flex-col max-w-md p-4 mx-auto">
       <div>
         <Link href={"/"}>
           <h1 className="text-2xl font-bold text-gray-900 text-center hover:cursor-pointer ">
@@ -51,7 +51,7 @@ const page = () => {
           type="submit"
           className="bg-gray-900 text-white w-[100%] p-2 rounded-md hover:bg-gray-800 mb-4 hover:cursor-pointer"
         >
-          Log In
+          Sign Up
         </button>
       </form>
       <p className="text-center font-bold text-slate-600">OR</p>
