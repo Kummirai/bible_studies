@@ -5,7 +5,11 @@ const page = () => {
   return (
     <div className="flex flex-col max-w-md p-4 mx-auto mt-10 rounded-lg shadow-lg">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900 text-center ">BS</h1>
+        <Link href={"/"}>
+          <h1 className="text-2xl font-bold text-gray-900 text-center hover:cursor-pointer ">
+            BS
+          </h1>
+        </Link>
         <h2 className="text-xl text-gray-900 text-center my-6">
           Log in into your BS account
         </h2>
