@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const page = () => {
   return (
-    <div className="flex flex-col max-w-md p-4 mx-auto mt-10 rounded-lg shadow-lg">
+    <div className="flex flex-col max-w-md p-4 mx-auto mt-10">
       <div>
         <Link href={"/"}>
           <h1 className="text-2xl font-bold text-gray-900 text-center hover:cursor-pointer ">
@@ -11,7 +11,7 @@ const page = () => {
           </h1>
         </Link>
         <h2 className="text-xl text-gray-900 text-center my-6">
-          Log in into your BS account
+          Sign Up for a BS account
         </h2>
       </div>
       <form action="">

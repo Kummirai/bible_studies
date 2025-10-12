@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const page = () => {
   return (
-    <div className="flex flex-col max-w-md p-4 mx-auto mt-10 rounded-lg shadow-lg">
+    <div className="flex flex-col max-w-md p-4 mx-auto mt-10 ">
       <div>
         <Link href={"/"}>
           <h1 className="text-2xl font-bold text-gray-900 text-center ">BS</h1>
