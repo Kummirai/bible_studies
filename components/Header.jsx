@@ -4,14 +4,17 @@ const Header = () => {
   const links = ["Home", "Curriculum", "About", "Contact"];
 
   return (
-    <header className="flex justify-between items-center max-w-4xl mx-auto">
+    <header className="flex justify-between items-center max-w-4xl mx-auto pt-8 pb-4">
       <h1 className="text-2xl font-bold ">
         <Link href="/">BS</Link>
       </h1>
       <nav>
         <ul className="flex items-center gap-6 text-gray-600">
           {links.map((link) => (
-            <li key={link} className="border-b-2 border-b-transparent hover:border-b-2 hover:border-black">
+            <li
+              key={link}
+              className="border-b-2 border-b-transparent hover:border-b-2 hover:border-black"
+            >
               <Link href={link === "Home" ? "/" : `/${link.toLowerCase()}`}>
                 {link}
               </Link>
