@@ -23,12 +23,18 @@ const Header = () => {
         </ul>
       </nav>
       <div className="flex items-center gap-4 text-white">
-        <button className="border border-gray-500 px-5 py-[0.2rem] text-black rounded-md hover:bg-black hover:text-white hover:cursor-pointer">
+        <Link
+          href={"/auth/login"}
+          className="border border-gray-500 px-5 py-[0.2rem] text-black rounded-md hover:bg-black hover:text-white hover:cursor-pointer"
+        >
           Log In
-        </button>
-        <button className="bg-black border px-5 py-[0.2rem] rounded-md hover:cursor-pointer hover:bg-transparent hover:border hover:border-gray-500 hover:text-black">
+        </Link>
+        <Link
+          href={"/auth/signup"}
+          className="bg-black border px-5 py-[0.2rem] rounded-md hover:cursor-pointer hover:bg-transparent hover:border hover:border-gray-500 hover:text-black"
+        >
           Sign Up
-        </button>
+        </Link>
       </div>
     </header>
   );
