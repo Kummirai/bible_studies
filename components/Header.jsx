@@ -4,7 +4,7 @@ const Header = () => {
   const links = ["Home", "Curriculum", "About", "Contact"];
 
   return (
-    <header className="flex justify-between items-center">
+    <header className="flex justify-between items-center max-w-4xl mx-auto">
       <h1 className="text-xl font-bold ">
         <Link href="/">BS</Link>
       </h1>
