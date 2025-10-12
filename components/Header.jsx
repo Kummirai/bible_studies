@@ -5,7 +5,7 @@ const Header = () => {
 
   return (
     <header className="flex justify-between items-center max-w-4xl mx-auto pt-8 pb-4">
-      <h1 className="text-2xl font-bold ">
+      <h1 className="text-2xl font-bold text-gray-900">
         <Link href="/">BS</Link>
       </h1>
       <nav>
@@ -25,13 +25,13 @@ const Header = () => {
       <div className="flex items-center gap-4 text-white">
         <Link
           href={"/auth/login"}
-          className="border border-gray-500 px-5 py-[0.2rem] text-black rounded-md hover:bg-black hover:text-white hover:cursor-pointer"
+          className="border border-gray-500 px-5 py-[0.2rem] text-black rounded-md hover:bg-gray-900 hover:text-white hover:cursor-pointer"
         >
           Log In
         </Link>
         <Link
           href={"/auth/signup"}
-          className="bg-black border px-5 py-[0.2rem] rounded-md hover:cursor-pointer hover:bg-transparent hover:border hover:border-gray-500 hover:text-black"
+          className="bg-gray-900 border px-5 py-[0.2rem] rounded-md hover:cursor-pointer hover:bg-transparent hover:border hover:border-gray-500 hover:text-gray-900"
         >
           Sign Up
         </Link>
