@@ -11,7 +11,7 @@ const Header = () => {
       <nav>
         <ul className="flex items-center gap-6 text-gray-600">
           {links.map((link) => (
-            <li key={link}>
+            <li key={link} className="border-b-2 border-b-transparent hover:border-b-2 hover:border-black">
               <Link href={link === "Home" ? "/" : `/${link.toLowerCase()}`}>
                 {link}
               </Link>
