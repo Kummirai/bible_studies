@@ -79,7 +79,7 @@ const electives = [
 const Electives = ({ heading }) => {
   return (
     <div className="p-10 mb-10">
-      <h2 className="text-gray-900 text-4xl font-semibold text-center mb-10">
+      <h2 className="text-slate-900 text-4xl font-semibold text-center mb-10">
         {heading}
       </h2>
       <div className="grid grid-cols-3 gap-5 bg-white">

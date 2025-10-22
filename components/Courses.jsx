@@ -12,7 +12,7 @@ const courses = [
     id: "THEO201",
     title: "Systematic Theology",
     modules: 8,
-    desc: "A comprehensive study of Christian doctrines organized by thematic categories, exploring topics like revelation, God, creation, sin, Christology, salvation, church, and eschatology in a structured framework.",
+    desc: "A comprehensive study of Christian doctrines organized by thematic categories, exploring topics like revelation, God, creation, sin, Christology, salvation, church, and eschatology in a structuslate framework.",
   },
   {
     id: "BIBL301",
@@ -67,10 +67,10 @@ const courses = [
 const Courses = ({ heading }) => {
   return (
     <div className="p-10 mb-10">
-      <h2 className="text-gray-900 text-4xl font-semibold text-center mb-10">
+      <h2 className="text-slate-900 text-4xl font-semibold text-center mb-10">
         {heading}
       </h2>
-      <div className="grid grid-cols-3 gap-5 bg-white">
+      <div className="grid grid-cols-1 gap-5 min-xl:grid-cols-3  min-md:grid-cols-2 sm:grid-cols-1 bg-white">
         {courses?.map((course, index) =>
           index < 6 ? (
             <CourseCard key={index} course={course} heading={heading} />
