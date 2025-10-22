@@ -7,8 +7,8 @@ const CourseCard = ({ course, heading }) => {
     <div
       className={
         heading === "Electives"
-          ? "p-4 border flex flex-col justify-around items-start hover:border-amber-400 border-amber-200 rounded-2xl h-[230px]"
-          : "p-4 border flex flex-col justify-around items-start hover:border-gray-400 border-gray-200 rounded-2xl h-[230px]"
+          ? "p-4 border flex flex-col justify-around items-start hover:border-red-400 border-red-100 rounded-2xl h-[230px]"
+          : "p-4 border flex flex-col justify-around items-start hover:border-red-400 border-red-100 rounded-2xl h-[230px]"
       }
     >
       <div>
@@ -23,11 +23,11 @@ const CourseCard = ({ course, heading }) => {
         {course.desc}
       </p>
       {heading === "Electives" ? (
-        <button className="px-5 py-[6px] border rounded-lg border-yellow-300 text-[0.85rem] text-black  hover:cursor-pointer  hover:border-yellow-500 hover:bg-transparent hover:text-gray-900">
+        <button className="px-5 py-[6px] bg-red-700 border rounded-lg border-red-300 text-[0.85rem] text-white  hover:cursor-pointer  hover:border-red-500  hover:text-red-700 hover:bg-transparent">
           View Modules
         </button>
       ) : (
-        <button className="px-5 py-[6px] rounded-lg bg-gray-900 text-[0.85rem] text-white hover:cursor-pointer hover:bg-gray-800">
+        <button className="px-5 py-[6px] bg-red-700 border rounded-lg border-red-300 text-[0.85rem] text-white  hover:cursor-pointer  hover:border-red-500  hover:text-red-700 hover:bg-transparent">
           View Modules
         </button>
       )}
