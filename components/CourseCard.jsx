@@ -14,7 +14,7 @@ const CourseCard = ({ course }) => {
       </div>
 
       <p className="text-[0.9rem] text-gray-700 my-2 line-clamp-4">{course.desc}</p>
-      <button className="px-5 py-1 rounded-lg bg-gray-900 text-[0.85rem] text-white hover:cursor-pointer hover:bg-gray-800">
+      <button className="px-5 py-[6px] rounded-lg bg-gray-900 text-[0.85rem] text-white hover:cursor-pointer hover:bg-gray-800">
         View Modules
       </button>
     </div>
