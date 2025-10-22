@@ -1,7 +1,9 @@
 const Hero = () => {
   return (
     <main className=" flex flex-col items-center justify-center max-w-4xl mx-auto text-center gap-6 mt-20 px-4 h-[70vh]">
-      <h2 className="text-5xl text-gray-900 font-semibold">The Home Of Bible Study</h2>
+      <h2 className="text-5xl text-gray-900 font-semibold">
+        The Home Of Bible Study
+      </h2>
       <p className="text-gray-600 text-sm md:text-xl font-light pt-3 pb-6 max-w-2xl">
         We explore the mysteries of divine existence. Our rational inquiry into
         theology examines faith, philosophy, and scripture to illuminate
