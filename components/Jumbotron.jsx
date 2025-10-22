@@ -1,9 +1,8 @@
 import React from "react";
-import Image from "next/image";
 
 const Jumbotron = () => {
   return (
-    <div className="h-[70vh] grid grid-cols-2 bg-gray-400 w-[100%] p-5 mb-20">
+    <div className="h-[70vh] grid grid-cols-2 bg-gray-400 w-[100%] p-5">
       <div className="col-start-1 col-end-2 px-10 flex flex-col items-start justify-center">
         <div className="mb-10">
           <h2 className="text-7xl text-gray-900 font-bold">Learn Theology </h2>

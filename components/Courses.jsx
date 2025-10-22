@@ -64,15 +64,19 @@ const courses = [
   },
 ];
 
-const Courses = () => {
+const Courses = ({ heading }) => {
   return (
     <div className="p-10 mb-10">
       <h2 className="text-gray-900 text-4xl font-semibold text-center mb-10">
-        Courses
+        {heading}
       </h2>
       <div className="grid grid-cols-3 gap-5 bg-white">
         {courses?.map((course, index) =>
-          index < 6 ? <CourseCard key={index} course={course} /> : ""
+          index < 6 ? (
+            <CourseCard key={index} course={course} heading={heading} />
+          ) : (
+            ""
+          )
         )}
       </div>
     </div>
