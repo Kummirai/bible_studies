@@ -2,12 +2,12 @@ import React from "react";
 
 const Jumbotron = () => {
   return (
-    <div className="h-[70vh] grid grid-cols-2 bg-slate-500 w-[100%] p-5">
-      <div className="col-start-1 col-end-2 px-10 flex flex-col items-start justify-center">
+    <div className="h-[70vh] flex flex-col items-center justify-center  bg-slate-400 w-[100%] p-5">
+      <div className=" px-10 flex flex-col items-start justify-center">
         <div className="mb-10">
           <h2 className="text-7xl text-white font-bold">Learn Theology </h2>
           <h2 className="font-light text-slate-200 text-5xl">
-            at your own pace
+            at your own pace, at no cost
           </h2>
           <p className="font-light text-slate-50 text-lg mt-5">
             Explore deep theological concepts and biblical studies through our
@@ -19,7 +19,6 @@ const Jumbotron = () => {
           Start Now
         </button>
       </div>
-      <div className="col-start-2 col-end-3 flex items-center justify-center rounded-sm"></div>
     </div>
   );
 };

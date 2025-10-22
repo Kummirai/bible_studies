@@ -78,11 +78,11 @@ const electives = [
 
 const Electives = ({ heading }) => {
   return (
-    <div className="p-10 mb-10">
+    <div className="p-10 mb-10 bg-slate-100">
       <h2 className="text-slate-900 text-4xl font-semibold text-center mb-10">
         {heading}
       </h2>
-      <div className="grid grid-cols-3 gap-5 bg-white">
+      <div className="grid grid-cols-3 gap-5 bg-state-100">
         {electives?.map((elective, index) =>
           index < 6 ? (
             <CourseCard key={index} course={elective} heading={heading} />
