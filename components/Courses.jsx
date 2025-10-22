@@ -57,7 +57,7 @@ const courses = [
 const Courses = () => {
   return (
     <div className="p-10">
-      <h2 className="text-gray-900 text-4xl font-semibold text-center my-10">
+      <h2 className="text-gray-900 text-4xl font-semibold text-center mb-10">
         Courses
       </h2>
       <div className="grid grid-cols-3 gap-5 bg-white">

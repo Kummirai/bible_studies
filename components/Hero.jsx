@@ -1,6 +1,6 @@
 const Hero = () => {
   return (
-    <main className=" flex flex-col items-center justify-center max-w-4xl mx-auto text-center gap-6 mt-20 px-4 h-[70vh]">
+    <main className=" flex flex-col items-center justify-center w-[100%] mx-auto text-center gap-6 px-4 bg-gray-100 h-[80vh]">
       <h2 className="text-5xl text-gray-900 font-semibold">
         The Home Of Bible Study
       </h2>
