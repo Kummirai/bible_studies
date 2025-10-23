@@ -7,7 +7,7 @@ const CourseCard = ({ course, heading }) => {
     <div
       className={
         heading === "Electives"
-          ? "p-4 border flex flex-col justify-around items-start hover:border-slate-400 border-slate-200 rounded-2xl h-[230px]"
+          ? "bg-slate-100 p-4 border flex flex-col justify-around items-start hover:border-slate-400 border-slate-200 rounded-2xl h-[230px]"
           : "p-4 border flex flex-col justify-around items-start hover:border-slate-400 border-slate-200 rounded-2xl h-[230px]"
       }
     >
@@ -25,11 +25,11 @@ const CourseCard = ({ course, heading }) => {
         {course.desc}
       </p>
       {heading === "Electives" ? (
-        <button className="px-5 py-[6px] bg-slate-700 border rounded-lg border-slate-300 text-[0.85rem] text-white  hover:cursor-pointer  hover:border-slate-500  hover:text-slate-700 hover:bg-transparent">
+        <button className="px-5 py-[6px] bg-slate-900 border rounded-lg border-slate-300 text-[0.85rem] text-white  hover:cursor-pointer  hover:border-slate-500  hover:text-slate-700 hover:bg-transparent">
           View Modules
         </button>
       ) : (
-        <button className="px-5 py-[6px] bg-slate-700 border rounded-lg border-slate-300 text-[0.85rem] text-white  hover:cursor-pointer  hover:border-slate-500  hover:text-slate-700 hover:bg-transparent">
+        <button className="px-5 py-[6px] bg-slate-900 border rounded-lg border-slate-300 text-[0.85rem] text-white  hover:cursor-pointer  hover:border-slate-500  hover:text-slate-700 hover:bg-transparent">
           View Modules
         </button>
       )}
