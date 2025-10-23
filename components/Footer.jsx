@@ -1,5 +1,6 @@
 import React from "react";
 import FooterCoursesCard from "./FooterCoursesCard";
+import FooterContactCard from "./FooterContactCard";
 
 const Footer = ({ courses, electives, generalEducation }) => {
   return (
@@ -11,6 +12,7 @@ const Footer = ({ courses, electives, generalEducation }) => {
           courses={generalEducation}
           heading={"General Education"}
         />
+        <FooterContactCard />
       </div>
       <hr />
       <div className="pt-4 text-slate-300 text-xs flex items-center justify-center border-t border-t-slate-400">
