@@ -1,6 +1,7 @@
 import Courses from "@/components/Courses";
 import Hero from "@/components/Hero";
 import Jumbotron from "@/components/Jumbotron";
+import Newsletter from "@/components/Newsletter";
 
 const courses = [
   {
@@ -271,6 +272,7 @@ export default function Home() {
       <Jumbotron />
       <Courses heading="General Education" courses={generalEducation} />
       <Courses heading="Electives" courses={electives} />
+      <Newsletter />
     </div>
   );
 }
