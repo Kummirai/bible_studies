@@ -3,7 +3,7 @@ import React from "react";
 const Newsletter = () => {
   return (
     <div className="h-[60vh] flex justify-center items-center w-[100%] mb-10">
-      <div className="border-2 border-slate-300 p-10 h-[60%] w-[80%] flex flex-col items-center justify-between rounded-3xl">
+      <div className="border-1 border-slate-300 p-10 h-[60%] w-[80%] flex flex-col items-center justify-between rounded-lg">
         <h2 className="text-3xl font-semibold text-slate-900">
           Subscribe to our Newsletter
         </h2>
@@ -17,7 +17,7 @@ const Newsletter = () => {
         </button>
       </div>
     </div>
-  );
+  )
 };
 
 export default Newsletter;

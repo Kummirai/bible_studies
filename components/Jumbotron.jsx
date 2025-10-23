@@ -2,7 +2,7 @@ import React from "react";
 
 const Jumbotron = () => {
   return (
-    <div className="h-[70vh] flex flex-col items-center justify-center  bg-slate-700 w-[100%] p-5">
+    <div className="bg-[url('/bible-study.webp')] bg-cover bg-top h-[70vh] flex flex-col items-center justify-center w-[100%] p-5">
       <div className=" px-10 flex flex-col items-start justify-center">
         <div className="mb-10">
           <h2 className="text-7xl text-white font-bold">Learn Theology </h2>
