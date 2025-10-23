@@ -5,10 +5,12 @@ const Courses = ({ heading, courses }) => {
   return (
     <div
       className={
-        heading === "Electives" ? "bg-slate-100 p-10 mb-10" : "p-10 mb-10"
+        heading === "Electives"
+          ? "bg-slate-100 p-3 min-sm:p-10 mb-10"
+          : "p-3 min-sm:p-10 mb-10"
       }
     >
-      <h2 className="text-slate-900 text-4xl font-semibold text-center mb-10">
+      <h2 className="text-slate-900 text-2xl min-sm:text-4xl font-semibold text-center mb-10">
         {heading}
       </h2>
       <div

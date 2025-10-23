@@ -12,7 +12,7 @@ const CourseCard = ({ course, heading }) => {
       }
     >
       <div>
-        <h2 className="text-2xl font-semibold text-slate-900">
+        <h2 className="text-xl min-sm:text-2xl font-semibold text-slate-900">
           {course.title}
         </h2>
         <h3 className="text-[0.85rem] text-slate-700">
