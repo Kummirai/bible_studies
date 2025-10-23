@@ -2,6 +2,9 @@ import React from "react";
 import FooterCoursesCard from "./FooterCoursesCard";
 import FooterContactCard from "./FooterContactCard";
 
+const date = new Date();
+const year = date.getFullYear();
+
 const Footer = ({ courses, electives, generalEducation }) => {
   return (
     <div className="bg-slate-950 h-[fit-content] w-[100%] p-10 pb-3 ">
@@ -16,7 +19,7 @@ const Footer = ({ courses, electives, generalEducation }) => {
       </div>
       <hr />
       <div className="pt-4 text-slate-300 text-xs flex items-center justify-center border-t border-t-slate-400">
-        <p>biblestudy.org &copy; 2025</p>
+        <p>biblestudy.org &copy; {year}</p>
       </div>
     </div>
   );
