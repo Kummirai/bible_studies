@@ -15,7 +15,7 @@ const Jumbotron = () => {
             style
           </p>
         </div>
-        <button className="bg-white text-slate-700 px-8 py-2 rounded-lg hover:bg-slate-800 hover:cursor-pointer hover:text-white">
+        <button className="bg-white font-semibold text-slate-700 px-8 py-2 rounded-lg hover:bg-slate-200 hover:cursor-pointer">
           Start Now
         </button>
       </div>

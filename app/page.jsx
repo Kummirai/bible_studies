@@ -1,4 +1,5 @@
 import Courses from "@/components/Courses";
+import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Jumbotron from "@/components/Jumbotron";
 import Newsletter from "@/components/Newsletter";
@@ -273,6 +274,11 @@ export default function Home() {
       <Courses heading="General Education" courses={generalEducation} />
       <Courses heading="Electives" courses={electives} />
       <Newsletter />
+      <Footer
+        courses={courses}
+        electives={electives}
+        generalEducation={generalEducation}
+      />
     </div>
   );
 }
