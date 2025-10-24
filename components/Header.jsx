@@ -38,11 +38,11 @@ const Header = () => {
                 key={link}
                 className={
                   isOpen
-                    ? "border-b-1 border-b-slate-200 hover:border-b-2 hover:border-black"
+                    ? "border-b-1 text-slate-900 border-b-slate-200 hover:border-b-2 hover:border-black"
                     : "border-b-2  hover:border-b-2 hover:border-black"
                 }
               >
-                <Link href={link === "Home" ? "/" : `/${link.toLowerCase()}`}>
+                <Link className="text-slate-900 font-semibold text-[0.85rem]" href={link === "Home" ? "/" : `/${link.toLowerCase()}`}>
                   {link}
                 </Link>
               </li>
