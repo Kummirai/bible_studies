@@ -2,10 +2,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 const Header = () => {
   const links = ["Home", "Curriculum", "About", "Contact"];
   const pathname = usePathname();
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
 
   if (pathname === "/auth/login" || pathname === "/auth/signup") {
     return null;
@@ -47,7 +54,13 @@ const Header = () => {
           </Link>
         </div>
         <div className="hidden max-sm:block">
-          <Image src={"/menu.png"} width={"32"} height={"32"} alt="menu icon" />
+          <Image
+            onClick={toggleMenu}
+            src={!isOpen ? "/menu.png" : "/close.png"}
+            width={"32"}
+            height={"32"}
+            alt="menu icon"
+          />
         </div>
       </header>
     </>
