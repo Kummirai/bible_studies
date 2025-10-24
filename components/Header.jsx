@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -12,39 +13,41 @@ const Header = () => {
 
   return (
     <>
-      <header className="flex justify-between items-center max-w-4xl mx-auto pt-8 pb-8">
-        <h1 className="text-2xl font-bold text-slate-900 pl-5 min-sm:pl-0">
+      <header className="flex justify-between items-center max-w-4xl mx-auto sm:px-0 px-5 pt-8 pb-8">
+        <h1 className="text-2xl font-bold text-slate-900 ">
           <Link href="/">BS</Link>
         </h1>
-        <div className="hidden sm:block">
-          <nav>
-            <ul className="flex items-center gap-6 text-slate-600">
-              {links.map((link) => (
-                <li
-                  key={link}
-                  className="border-b-2 border-b-transparent hover:border-b-2 hover:border-black"
-                >
-                  <Link href={link === "Home" ? "/" : `/${link.toLowerCase()}`}>
-                    {link}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <div className="flex items-center gap-4 text-white ">
-            <Link
-              href={"/auth/login"}
-              className="border border-slate-500 px-5 py-[0.2rem] text-black rounded-md hover:bg-slate-900 hover:text-white hover:cursor-pointer"
-            >
-              Log In
-            </Link>
-            <Link
-              href={"/auth/signup"}
-              className="bg-slate-900 border px-5 py-[0.2rem] rounded-md hover:cursor-pointer hover:bg-transparent hover:border hover:border-slate-500 hover:text-slate-900"
-            >
-              Sign Up
-            </Link>
-          </div>
+
+        <nav>
+          <ul className=" hidden sm:flex items-center gap-6 text-slate-600">
+            {links.map((link) => (
+              <li
+                key={link}
+                className="border-b-2 border-b-transparent hover:border-b-2 hover:border-black"
+              >
+                <Link href={link === "Home" ? "/" : `/${link.toLowerCase()}`}>
+                  {link}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <div className="hidden sm:flex items-center gap-4 text-white ">
+          <Link
+            href={"/auth/login"}
+            className="border border-slate-500 px-5 py-[0.2rem] text-black rounded-md hover:bg-slate-900 hover:text-white hover:cursor-pointer"
+          >
+            Log In
+          </Link>
+          <Link
+            href={"/auth/signup"}
+            className="bg-slate-900 border px-5 py-[0.2rem] rounded-md hover:cursor-pointer hover:bg-transparent hover:border hover:border-slate-500 hover:text-slate-900"
+          >
+            Sign Up
+          </Link>
+        </div>
+        <div className="hidden max-sm:block">
+          <Image src={"/menu.png"} width={"32"} height={"32"} alt="menu icon" />
         </div>
       </header>
     </>
