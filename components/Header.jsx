@@ -20,17 +20,27 @@ const Header = () => {
 
   return (
     <>
-      <header className="flex justify-between items-center max-w-4xl mx-auto sm:px-0 px-5 pt-8 pb-8">
+      <header className="relative flex justify-between items-center max-w-4xl mx-auto sm:px-0 px-5 pt-8 pb-8">
         <h1 className="text-2xl font-bold text-slate-900 ">
           <Link href="/">BS</Link>
         </h1>
 
         <nav>
-          <ul className=" hidden sm:flex items-center gap-6 text-slate-600">
+          <ul
+            className={
+              isOpen
+                ? "max-sm:flex flex-col absolute top-18 right-4 bg-white p-2"
+                : "hidden sm:flex items-center gap-6 text-slate-600"
+            }
+          >
             {links.map((link) => (
               <li
                 key={link}
-                className="border-b-2 border-b-transparent hover:border-b-2 hover:border-black"
+                className={
+                  isOpen
+                    ? "border-b-1 border-b-slate-200 hover:border-b-2 hover:border-black"
+                    : "border-b-2  hover:border-b-2 hover:border-black"
+                }
               >
                 <Link href={link === "Home" ? "/" : `/${link.toLowerCase()}`}>
                   {link}
@@ -57,8 +67,8 @@ const Header = () => {
           <Image
             onClick={toggleMenu}
             src={!isOpen ? "/menu.png" : "/close.png"}
-            width={"32"}
-            height={"32"}
+            width={"28"}
+            height={"28"}
             alt="menu icon"
           />
         </div>
