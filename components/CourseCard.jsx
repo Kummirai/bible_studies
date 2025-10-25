@@ -1,24 +1,37 @@
 "use client";
 
 import React from "react";
+import { useRouter } from "next/navigation";
 
 const CourseCard = ({ course, heading }) => {
+  const router = useRouter();
+
   const handleViewModules = async (courseCode) => {
+    let modules = [];
+
     if (heading === "Courses") {
       const res = await fetch(`/api/courses/${courseCode}`);
-      const modules = await res.json();
-      console.log(modules);
+      modules = await res.json();
     } else if (heading === "Electives") {
       const res = await fetch(`/api/electives/${courseCode}`);
-      const modules = await res.json();
-      console.log(modules);
+      modules = await res.json();
     } else if (heading === "General Education") {
       const res = await fetch(`/api/generalEducation/${courseCode}`);
-      const modules = await res.json();
-      console.log(modules);
+      modules = await res.json();
     }
-  };
 
+    console.log(modules);
+    sessionStorage.setItem(
+      "courseModules",
+      JSON.stringify({
+        courseCode,
+        modules,
+        heading,
+      })
+    );
+
+    router.push("/modules");
+  };
   return (
     <div
       className={
