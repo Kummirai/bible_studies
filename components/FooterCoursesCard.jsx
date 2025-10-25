@@ -9,7 +9,7 @@ const FooterCoursesCard = ({ courses, heading }) => {
           {courses.map((course, index) =>
             index < 6 ? (
               <li key={index} className="text-[0.79rem] text-slate-300">
-                {course.title}
+                {course.course.title}
               </li>
             ) : (
               ""

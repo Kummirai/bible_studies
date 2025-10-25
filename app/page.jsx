@@ -272,23 +272,36 @@ export async function getCourses() {
   return courses;
 }
 
+export async function getElectives(params) {
+  const res = await fetch(`${process.env.NEXT_URL}/api/electives`);
+  const electives = await res.json();
+  return electives;
+}
+
+export async function getGeneralEducation(params) {
+  const res = await fetch(`${process.env.NEXT_URL}/api/generalEducation`);
+  const generalEducation = await res.json();
+  return generalEducation;
+}
+
 export default async function Home() {
   const courses = await getCourses();
- 
+  const electives = await getElectives();
+  const generalEducation = await getGeneralEducation();
 
   return (
     <div className="flex items-center flex-col  ">
       <Hero />
       <Courses heading="Courses" courses={courses} />
       <Jumbotron />
-      {/* <Courses heading="General Education" courses={generalEducation} />
-      <Courses heading="Electives" courses={electives} /> */}
+      <Courses heading="General Education" courses={generalEducation} />
+      <Courses heading="Electives" courses={electives} />
       <Newsletter />
-      {/* <Footer
+      <Footer
         courses={courses}
         electives={electives}
         generalEducation={generalEducation}
-      /> */}
+      />
     </div>
   );
 }
