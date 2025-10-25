@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Jumbotron from "@/components/Jumbotron";
 import Newsletter from "@/components/Newsletter";
+import clientPromise from "@/lib/mongodb";
 
 const courses = [
   {
@@ -264,6 +265,14 @@ const generalEducation = [
     desc: "Integrate physical, mental, and spiritual health principles from a biblical perspective, addressing stewardship of the body and holistic wellness.",
   },
 ];
+
+export async function getCourses() {
+  const res = await fetch(`${process.env.NEXT_URL}/api/courses`);
+  const courses = await res.json();
+  console.log(courses);
+}
+
+getCourses();
 
 export default function Home() {
   return (
