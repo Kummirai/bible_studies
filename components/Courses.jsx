@@ -2,6 +2,8 @@ import React from "react";
 import CourseCard from "./CourseCard";
 
 const Courses = ({ heading, courses }) => {
+  console.log(courses);
+
   return (
     <div
       className={
@@ -20,13 +22,13 @@ const Courses = ({ heading, courses }) => {
             : "grid grid-cols-1 gap-5 min-xl:grid-cols-3  min-md:grid-cols-2 sm:grid-cols-1 bg-white"
         }
       >
-        {courses?.map((course, index) =>
-          index < 6 ? (
-            <CourseCard key={index} course={course} heading={heading} />
-          ) : (
-            ""
-          )
-        )}
+        {courses?.map((course) => (
+          <CourseCard
+            key={course.course.code}
+            course={course}
+            heading={heading}
+          />
+        ))}
       </div>
     </div>
   );
