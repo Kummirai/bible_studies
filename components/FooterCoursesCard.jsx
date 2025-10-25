@@ -8,7 +8,7 @@ const FooterCoursesCard = ({ courses, heading }) => {
         <ul className="text-white">
           {courses.map((course, index) =>
             index < 6 ? (
-              <li key={index} className="text-[0.79rem] text-slate-300">
+              <li key={course.course.code} className="text-[0.79rem] text-slate-300">
                 {course.course.title}
               </li>
             ) : (
