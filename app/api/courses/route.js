@@ -1,4 +1,3 @@
-// app/api/your-endpoint/route.js
 import clientPromise from "@/lib/mongodb";
 import { NextResponse } from "next/server";
 

@@ -1,4 +1,3 @@
-// app/modules/page.js
 "use client";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -24,10 +23,15 @@ export default function ModulesPage() {
       <div>
         {modules.map((module, index) => (
           <div key={index} className="module-card">
-            <h2 className="text-2xl text-center font-semibold">
-              {module.course.title}
-            </h2>
-            <p className="my-2 w-[80%] mx-auto">{module.course.description}</p>
+            <div className="bg-blue-950 text-white p-5 py-10">
+              <h2 className="text-4xl text-center font-semibold">
+                {module.course.title}
+              </h2>
+              <p className="mt-4 w-[80%] text-md font-extralight text-justify mx-auto text-blue-200">
+                {module.course.description}
+              </p>
+            </div>
+
             <ul>
               {module.learningOutcomes.map((outcome, index) => (
                 <li key={index}>{outcome}</li>
