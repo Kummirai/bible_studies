@@ -18,6 +18,10 @@ export default function ModulesPage() {
     }
   }, [searchParams]);
 
+  const handleSelectTopic = (moduleId) => {
+    console.log("Selected module ID:", moduleId);
+  };
+
   return (
     <div className="max-w-6xl mx-auto">
       <div>
@@ -27,7 +31,7 @@ export default function ModulesPage() {
               <h2 className="text-4xl text-center font-semibold">
                 {module.course.title}
               </h2>
-              <p className="mt-4 w-[80%] text-md font-extralight text-justify mx-auto text-blue-200">
+              <p className="mt-4 w-[80%] text-md font-extralight  mx-auto text-blue-200">
                 {module.course.description}
               </p>
             </div>
@@ -48,10 +52,16 @@ export default function ModulesPage() {
                 </ul>
               </div>
               <div>
-                <h2 className="text-blue-950 text-xl font-semibold mb-2">Topics</h2>
+                <h2 className="text-blue-950 text-xl font-semibold mb-2">
+                  Topics
+                </h2>
                 <ul className="pl-10  text-gray-900">
                   {module.modules.map((week, index) => (
-                    <li className="py-[0.1rem]" key={week.module_id}>
+                    <li
+                      onClick={() => handleSelectTopic(week.module_id)}
+                      className="py-[0.1rem] hover:underline cursor-pointer hover:text-blue-600"
+                      key={week.module_id}
+                    >
                       <span>{week.week}. </span>
                       {week.topic}
                     </li>
