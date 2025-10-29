@@ -3,6 +3,8 @@ import RequiredBiblePassage from "@/components/reading/RequiredBiblePassage";
 import RequiredBooks from "@/components/reading/RequiredBooks";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import RecommendedBook from "@/components/reading/RecommendedBook";
+import RecommendedLecture from "@/components/reading/RecommendedLecture";
 
 export default function ModuleDetailPage() {
   const searchParams = useSearchParams();
@@ -128,6 +130,18 @@ export default function ModuleDetailPage() {
         <h2 className="text-blue-950 text-lg font-semibold mb-2">
           Recommended
         </h2>
+        <div className="grid  sm:grid-cols-2 gap-4">
+          <RecommendedBook
+            title={moduleData?.reading_resources.recommended[0].title}
+            chapter={moduleData?.reading_resources.recommended[0].chapter}
+            author={moduleData?.reading_resources.recommended[0].author}
+          />
+          <RecommendedLecture
+            title={moduleData?.reading_resources.recommended[1].title}
+            creator={moduleData?.reading_resources.recommended[1].creator}
+            url={moduleData?.reading_resources.recommended[1].url}
+          />
+        </div>
       </div>
     </div>
   );
