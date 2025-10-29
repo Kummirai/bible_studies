@@ -20,7 +20,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="relative flex justify-between items-center max-w-4xl mx-auto sm:px-0 px-5 pt-8 pb-8">
+      <header className="relative flex justify-between items-center max-w-6xl mx-auto sm:px-0 px-5 pt-8 pb-8">
         <h1 className="text-2xl font-bold text-slate-900 ">
           <Link href="/">BS</Link>
         </h1>

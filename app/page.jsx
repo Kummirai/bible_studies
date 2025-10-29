@@ -3,7 +3,6 @@ import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Jumbotron from "@/components/Jumbotron";
 import Newsletter from "@/components/Newsletter";
-import clientPromise from "@/lib/mongodb";
 
 export async function getCourses() {
   const res = await fetch(`${process.env.NEXT_URL}/api/courses`);
