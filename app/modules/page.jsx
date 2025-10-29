@@ -18,8 +18,12 @@ export default function ModulesPage() {
     }
   }, [searchParams]);
 
-  const handleSelectTopic = (moduleId) => {
+  const handleSelectTopic = async (moduleId) => {
     console.log("Selected module ID:", moduleId);
+    const response = await fetch(`/api/modules/${moduleId}`);
+    const data = await response.json();
+    console.log("Fetched module data:", data);
+    // You can now use the fetched data as needed
   };
 
   return (
@@ -43,7 +47,7 @@ export default function ModulesPage() {
                 <ul className="pl-10 ">
                   {module.learningOutcomes.map((outcome, index) => (
                     <li
-                      className="list-disc text-gray-900 py-[0.1rem]"
+                      className="list-disc  text-gray-900 py-[0.1rem]"
                       key={index}
                     >
                       {outcome}
@@ -59,7 +63,7 @@ export default function ModulesPage() {
                   {module.modules.map((week, index) => (
                     <li
                       onClick={() => handleSelectTopic(week.module_id)}
-                      className="py-[0.1rem] hover:underline cursor-pointer hover:text-blue-600"
+                      className="py-[0.1rem] w-fit hover:underline cursor-pointer hover:text-blue-600"
                       key={week.module_id}
                     >
                       <span>{week.week}. </span>
