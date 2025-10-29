@@ -1,12 +1,14 @@
 "use client";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function ModulesPage() {
   const searchParams = useSearchParams();
   const [modules, setModules] = useState([]);
   const [courseCode, setCourseCode] = useState("");
-  console.log(modules);
+
+  const router = useRouter();
 
   useEffect(() => {
     const storedData = sessionStorage.getItem("courseModules");
@@ -14,16 +16,23 @@ export default function ModulesPage() {
       const { courseCode, modules } = JSON.parse(storedData);
       setCourseCode(courseCode);
       setModules(modules);
-      sessionStorage.removeItem("courseModules");
     }
   }, [searchParams]);
 
   const handleSelectTopic = async (moduleId) => {
     console.log("Selected module ID:", moduleId);
     const response = await fetch(`/api/modules/${moduleId}`);
-    const data = await response.json();
-    console.log("Fetched module data:", data);
-    // You can now use the fetched data as needed
+    const module = await response.json();
+    console.log("Fetched module data:", module);
+
+    sessionStorage.setItem(
+      "moduleDetail",
+      JSON.stringify({
+        module,
+      })
+    );
+
+    router.push("/modules/moduleDetail");
   };
 
   return (

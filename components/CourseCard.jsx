@@ -20,7 +20,6 @@ const CourseCard = ({ course, heading }) => {
       modules = await res.json();
     }
 
-    console.log(modules);
     sessionStorage.setItem(
       "courseModules",
       JSON.stringify({

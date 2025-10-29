@@ -2,8 +2,6 @@ import React from "react";
 import CourseCard from "./CourseCard";
 
 const Courses = ({ heading, courses }) => {
-  console.log(courses);
-
   return (
     <div
       className={
