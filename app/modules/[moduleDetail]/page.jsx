@@ -64,8 +64,8 @@ export default function ModuleDetailPage() {
 
   return (
     <div className="max-w-6xl mx-auto">
-      <div className="bg-blue-950 text-white p-5 py-10">
-        <h2 className="text-4xl text-center font-semibold">
+      <div className="bg-blue-950 text-white p-5 py-15">
+        <h2 className="text-4xl text-center font-semibold max-w-[768px] mx-auto">
           {moduleData.week_title}
         </h2>
         <p className="mt-4 w-[80%] text-md font-extralight  mx-auto text-blue-200">
@@ -112,7 +112,7 @@ export default function ModuleDetailPage() {
         Bible Passages
       </h2>
       <div className="p-5 pt-0 grid sm:grid-cols-3 gap-4">
-        {moduleData?.reading_resources.required[1].passages.map(
+        {moduleData?.reading_resources?.required[1].passages.map(
           (passage, index) => (
             <RequiredBiblePassage
               key={index}
@@ -123,11 +123,11 @@ export default function ModuleDetailPage() {
             />
           )
         )}
-        <div className="pt-2">
-          <h2 className="text-blue-950 text-lg font-semibold mb-2">
-            Recommended
-          </h2>
-        </div>
+      </div>
+      <div className="pl-5 pt-2">
+        <h2 className="text-blue-950 text-lg font-semibold mb-2">
+          Recommended
+        </h2>
       </div>
     </div>
   );
