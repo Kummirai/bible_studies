@@ -5,6 +5,8 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import RecommendedBook from "@/components/reading/RecommendedBook";
 import RecommendedLecture from "@/components/reading/RecommendedLecture";
+import LectureContent from "@/components/lectureContent/LectureContent";
+import Assignment from "@/components/assignment/Assignment";
 
 export default function ModuleDetailPage() {
   const searchParams = useSearchParams();
@@ -94,53 +96,83 @@ export default function ModuleDetailPage() {
           </ul>
         </div>
       </div>
+      <div className="p-5 pt-0">
+        <h2 className="text-blue-950 text-xl font-semibold mb-2">
+          Lecture Content
+        </h2>
+        {moduleData.lecture_content.sections.map((lecture, index) => (
+          <LectureContent
+            key={index}
+            title={lecture.section_title}
+            content={lecture.content}
+            duration={`${lecture.duration_minutes} minutes`}
+          />
+        ))}
+      </div>
       <div>
-        <h2 className="text-blue-950 text-lg font-semibold mb-2 px-5">
+        <h2 className="text-blue-950 text-xl font-semibold mb-2 px-5">
           Required Reading
         </h2>
       </div>
-      <div>
-        <h2 className="text-blue-950 text-lg font-semibold mb-2 px-5">Books</h2>
-      </div>
-      <div className="p-5 pt-0 grid sm:grid-cols-2 gap-4">
-        <RequiredBooks
-          title={moduleData?.reading_resources.required[0].title}
-          chapter={moduleData?.reading_resources.required[0].chapter}
-          description={moduleData?.reading_resources.required[0].description}
-          author={moduleData?.reading_resources.required[0].author}
-        />
-      </div>
-      <h2 className="text-blue-950 text-lg font-semibold mb-2 px-5">
-        Bible Passages
-      </h2>
-      <div className="p-5 pt-0 grid sm:grid-cols-3 gap-4">
-        {moduleData?.reading_resources?.required[1].passages.map(
-          (passage, index) => (
-            <RequiredBiblePassage
-              key={index}
-              book={passage.book}
-              chapter={passage.chapter}
-              focus={passage.focus}
-              verses={passage.verses}
-            />
-          )
-        )}
-      </div>
-      <div className="pl-5 pt-2">
-        <h2 className="text-blue-950 text-lg font-semibold mb-2">
-          Recommended
+      <div className="pl-5">
+        <div>
+          <h2 className="text-blue-950 text-lg font-semibold mb-2 px-5">
+            Books
+          </h2>
+        </div>
+        <div className="p-5 pt-0 grid sm:grid-cols-2 gap-4 pl-5">
+          <RequiredBooks
+            title={moduleData?.reading_resources.required[0].title}
+            chapter={moduleData?.reading_resources.required[0].chapter}
+            description={moduleData?.reading_resources.required[0].description}
+            author={moduleData?.reading_resources.required[0].author}
+          />
+        </div>
+        <h2 className="text-blue-950 text-lg font-semibold mb-2 px-5">
+          Bible Passages
         </h2>
-        <div className="grid  sm:grid-cols-2 gap-4">
-          <RecommendedBook
-            title={moduleData?.reading_resources.recommended[0].title}
-            chapter={moduleData?.reading_resources.recommended[0].chapter}
-            author={moduleData?.reading_resources.recommended[0].author}
-          />
-          <RecommendedLecture
-            title={moduleData?.reading_resources.recommended[1].title}
-            creator={moduleData?.reading_resources.recommended[1].creator}
-            url={moduleData?.reading_resources.recommended[1].url}
-          />
+        <div className="p-5 pt-0 grid sm:grid-cols-3 gap-4">
+          {moduleData?.reading_resources?.required[1].passages.map(
+            (passage, index) => (
+              <RequiredBiblePassage
+                key={index}
+                book={passage.book}
+                chapter={passage.chapter}
+                focus={passage.focus}
+                verses={passage.verses}
+              />
+            )
+          )}
+        </div>
+        <div className="pl-5 pt-2">
+          <h2 className="text-blue-950 text-lg font-semibold mb-2">
+            Recommended
+          </h2>
+          <div className="grid  sm:grid-cols-2 gap-4">
+            <RecommendedBook
+              title={moduleData?.reading_resources.recommended[0].title}
+              chapter={moduleData?.reading_resources.recommended[0].chapter}
+              author={moduleData?.reading_resources.recommended[0].author}
+            />
+            <RecommendedLecture
+              title={moduleData?.reading_resources.recommended[1].title}
+              creator={moduleData?.reading_resources.recommended[1].creator}
+              url={moduleData?.reading_resources.recommended[1].url}
+            />
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2>Assignments</h2>
+        <div className="p-5 grid grid-cols-1 gap-4">
+          {moduleData.assignments.map((assignment, index) => (
+            <Assignment
+              key={index}
+              title={assignment.title}
+              type={assignment.type}
+              instructions={assignment.instructions}
+            />
+          ))}
         </div>
       </div>
     </div>
