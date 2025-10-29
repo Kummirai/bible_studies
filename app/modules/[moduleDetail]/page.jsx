@@ -61,7 +61,7 @@ export default function ModuleDetailPage() {
   const moduleData = selectedModule.module[0];
 
   return (
-    <div className="max-w-6xl mx-auto p-6">
+    <div className="max-w-6xl mx-auto">
       <div className="bg-blue-950 text-white p-5 py-10">
         <h2 className="text-4xl text-center font-semibold">
           {moduleData.week_title}
@@ -73,12 +73,12 @@ export default function ModuleDetailPage() {
       <div className="grid sm:grid-cols-3 bg-blue-300 text-white p-3 font-semibold text-center">
         <p>Year: {moduleData.year}</p>
         <p>Semester: {moduleData.semester}</p>
-        <p>Duration: {moduleData.overview.duration_hours}</p>
+        <p>Duration: {moduleData.overview.duration_hours} hours</p>
       </div>
       <div className="p-5">
         <div className="mb-4">
           <h2 className="text-blue-950 text-2xl font-semibold mb-2">
-            Objectives
+            Learning Objectives
           </h2>
           <ul className="pl-10 ">
             {moduleData?.overview.learning_objectives.map((outcome, index) => (
