@@ -1,4 +1,6 @@
 "use client";
+import RequiredBiblePassage from "@/components/reading/RequiredBiblePassage";
+import RequiredBooks from "@/components/reading/RequiredBooks";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -70,9 +72,10 @@ export default function ModuleDetailPage() {
           {moduleData.overview.description}
         </p>
       </div>
-      <div className="grid sm:grid-cols-3 bg-blue-300 text-white p-3 font-semibold text-center">
+      <div className="grid sm:grid-cols-4 bg-blue-300 text-white p-3 font-semibold text-center">
         <p>Year: {moduleData.year}</p>
         <p>Semester: {moduleData.semester}</p>
+        <p>Week: {moduleData.week_number}</p>
         <p>Duration: {moduleData.overview.duration_hours} hours</p>
       </div>
       <div className="p-5">
@@ -87,6 +90,43 @@ export default function ModuleDetailPage() {
               </li>
             ))}
           </ul>
+        </div>
+      </div>
+      <div>
+        <h2 className="text-blue-950 text-lg font-semibold mb-2 px-5">
+          Required Reading
+        </h2>
+      </div>
+      <div>
+        <h2 className="text-blue-950 text-lg font-semibold mb-2 px-5">Books</h2>
+      </div>
+      <div className="p-5 pt-0 grid sm:grid-cols-2 gap-4">
+        <RequiredBooks
+          title={moduleData?.reading_resources.required[0].title}
+          chapter={moduleData?.reading_resources.required[0].chapter}
+          description={moduleData?.reading_resources.required[0].description}
+          author={moduleData?.reading_resources.required[0].author}
+        />
+      </div>
+      <h2 className="text-blue-950 text-lg font-semibold mb-2 px-5">
+        Bible Passages
+      </h2>
+      <div className="p-5 pt-0 grid sm:grid-cols-3 gap-4">
+        {moduleData?.reading_resources.required[1].passages.map(
+          (passage, index) => (
+            <RequiredBiblePassage
+              key={index}
+              book={passage.book}
+              chapter={passage.chapter}
+              focus={passage.focus}
+              verses={passage.verses}
+            />
+          )
+        )}
+        <div className="pt-2">
+          <h2 className="text-blue-950 text-lg font-semibold mb-2">
+            Recommended
+          </h2>
         </div>
       </div>
     </div>
