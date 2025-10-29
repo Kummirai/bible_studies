@@ -7,6 +7,7 @@ import RecommendedBook from "@/components/reading/RecommendedBook";
 import RecommendedLecture from "@/components/reading/RecommendedLecture";
 import LectureContent from "@/components/lectureContent/LectureContent";
 import Assignment from "@/components/assignment/Assignment";
+import QuizQuestions from "@/components/quiz/QuizQuestions";
 
 export default function ModuleDetailPage() {
   const searchParams = useSearchParams();
@@ -160,6 +161,18 @@ export default function ModuleDetailPage() {
               url={moduleData?.reading_resources.recommended[1].url}
             />
           </div>
+        </div>
+      </div>
+      <div>
+        <h2 className="text-blue-950 text-xl font-semibold mb-2 p-5">Quiz</h2>
+        <div>
+          {moduleData.quiz_questions.map((quizQuestion, index) => (
+            <QuizQuestions
+              key={index}
+              question={quizQuestion.question_text}
+              options={quizQuestion.options}
+            />
+          ))}
         </div>
       </div>
       <div>
