@@ -133,16 +133,20 @@ export default function ModuleDetailPage() {
           Bible Passages
         </h2>
         <div className="p-5 pt-0 grid sm:grid-cols-3 gap-4">
-          {moduleData?.reading_resources?.required[1].passages.map(
-            (passage, index) => (
-              <RequiredBiblePassage
-                key={index}
-                book={passage.book}
-                chapter={passage.chapter}
-                focus={passage.focus}
-                verses={passage.verses}
-              />
+          {moduleData?.reading_resources.required.passages !== undefined ?  (
+            moduleData?.reading_resources?.required[1]?.passages.map(
+              (passage, index) => (
+                <RequiredBiblePassage
+                  key={index}
+                  book={passage.book}
+                  chapter={passage.chapter}
+                  focus={passage.focus}
+                  verses={passage.verses}
+                />
+              )
             )
+          ) : (
+            <p>No Bible Passages Required</p>
           )}
         </div>
         <div className="pl-5 pt-2">
@@ -166,13 +170,13 @@ export default function ModuleDetailPage() {
       <div>
         <h2 className="text-blue-950 text-xl font-semibold mb-2 p-5">Quiz</h2>
         <div>
-          {moduleData.quiz_questions.map((quizQuestion, index) => (
+          {/* {moduleData.quiz_questions.map((quizQuestion, index) => (
             <QuizQuestions
               key={index}
               question={quizQuestion.question_text}
               options={quizQuestion.options}
             />
-          ))}
+          ))} */}
         </div>
       </div>
       <div>
