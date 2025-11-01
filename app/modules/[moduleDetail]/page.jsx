@@ -66,6 +66,7 @@ export default function ModuleDetailPage() {
   }
 
   const moduleData = selectedModule.module[0];
+  console.log(moduleData.quiz_questions[0]);
 
   return (
     <div className="max-w-6xl mx-auto">
@@ -133,7 +134,7 @@ export default function ModuleDetailPage() {
           Bible Passages
         </h2>
         <div className="p-5 pt-0 grid sm:grid-cols-3 gap-4">
-          {moduleData?.reading_resources.required.passages !== undefined ?  (
+          {moduleData?.reading_resources.required.passages !== undefined ? (
             moduleData?.reading_resources?.required[1]?.passages.map(
               (passage, index) => (
                 <RequiredBiblePassage
@@ -169,15 +170,18 @@ export default function ModuleDetailPage() {
       </div>
       <div>
         <h2 className="text-blue-950 text-xl font-semibold mb-2 p-5">Quiz</h2>
-        <div>
-          {/* {moduleData.quiz_questions.map((quizQuestion, index) => (
+        <form>
+          {moduleData.quiz_questions.map((quizQuestion) => (
             <QuizQuestions
-              key={index}
+              key={quizQuestion.question_id}
               question={quizQuestion.question_text}
               options={quizQuestion.options}
             />
-          ))} */}
-        </div>
+          ))}
+          <button className="bg-blue-950 px-4 py-1 text-white rounded-sm">
+            Submit Quiz
+          </button>
+        </form>
       </div>
       <div>
         <h2>Assignments</h2>
