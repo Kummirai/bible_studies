@@ -44,8 +44,8 @@ const CourseCard = ({ course, heading }) => {
           {course.course.title}
         </h2>
         <h3 className="text-xs pl-1 text-slate-700 font-semibold">
-          <span>{course?.modules.length}</span>
-          <span> Modules</span>
+          <span>{course?.course.credits}</span>
+          <span> Credits</span>
         </h3>
       </div>
 
