@@ -168,7 +168,7 @@ export default function ModuleDetailPage() {
           </div>
         </div>
       </div>
-      <div>
+      <div className="p-5">
         <h2 className="text-blue-950 text-xl font-semibold mb-2 p-5">Quiz</h2>
         <form>
           {moduleData.quiz_questions.map((quizQuestion) => (
@@ -176,6 +176,8 @@ export default function ModuleDetailPage() {
               key={quizQuestion.question_id}
               question={quizQuestion.question_text}
               options={quizQuestion.options}
+              type={quizQuestion.type}
+              questionId={quizQuestion.question_id}
             />
           ))}
           <button className="bg-blue-950 px-4 py-1 text-white rounded-sm">
@@ -183,8 +185,10 @@ export default function ModuleDetailPage() {
           </button>
         </form>
       </div>
-      <div>
-        <h2>Assignments</h2>
+      <div className="border border-blue-100 rounded-lg pt-4 mb-5">
+        <h2 className="text-blue-950 text-xl font-semibold mb-2 pl-4">
+          Assignments
+        </h2>
         <div className="p-5 grid grid-cols-1 gap-4">
           {moduleData.assignments.map((assignment, index) => (
             <Assignment
