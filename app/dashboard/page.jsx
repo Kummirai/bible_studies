@@ -2,9 +2,11 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import CourseCard from '@/components/CourseCard';
 
 const DashboardPage = () => {
   const [user, setUser] = useState(null);
+  const [suggestedCourses, setSuggestedCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
@@ -26,7 +28,20 @@ const DashboardPage = () => {
       }
     };
 
+    const fetchSuggestedCourses = async () => {
+      try {
+        const res = await fetch('/api/user/suggested-courses');
+        if (res.ok) {
+          const courses = await res.json();
+          setSuggestedCourses(courses);
+        }
+      } catch (error) {
+        console.error('Failed to fetch suggested courses', error);
+      }
+    };
+
     fetchUserData();
+    fetchSuggestedCourses();
   }, [router]);
 
   const handleLogout = async () => {
@@ -76,10 +91,21 @@ const DashboardPage = () => {
           </div>
         </div>
         <div>
-          <h2 className="text-2xl font-semibold mb-4">Suggested Courses</h2>
-          {/* Placeholder for suggested courses */}
+          <h2 className="text-xl font-semibold mb-4">Suggested Courses</h2>
           <div className="bg-white p-4 rounded-lg shadow">
-            <p>No course suggestions at the moment.</p>
+            {suggestedCourses.length > 0 ? (
+              <div className="grid grid-cols-1 gap-5">
+                {suggestedCourses.map((course) => (
+                  <CourseCard
+                    key={course.course.code}
+                    course={course}
+                    heading={course.type}
+                  />
+                ))}
+              </div>
+            ) : (
+              <p>No course suggestions at the moment.</p>
+            )}
           </div>
         </div>
       </div>

@@ -12,26 +12,31 @@ const getJwtSecret = () => {
 
 export async function middleware(request) {
   const { pathname } = request.nextUrl;
+  const token = request.cookies.get('token')?.value;
 
-  if (pathname.startsWith('/dashboard')) {
-    const token = request.cookies.get('token')?.value;
-
-    if (!token) {
-      return NextResponse.redirect(new URL('/auth/login', request.url));
+  if (!token) {
+    if (pathname.startsWith('/api/')) {
+      return NextResponse.json({ message: 'Authentication required.' }, { status: 401 });
     }
-
-    try {
-      await jwtVerify(token, getJwtSecret());
-      return NextResponse.next();
-    } catch (error) {
-      console.error('JWT verification error:', error);
-      return NextResponse.redirect(new URL('/auth/login', request.url));
-    }
+    return NextResponse.redirect(new URL('/auth/login', request.url));
   }
 
-  return NextResponse.next();
+  try {
+    await jwtVerify(token, getJwtSecret());
+    return NextResponse.next();
+  } catch (error) {
+    console.error('JWT verification error:', error);
+    const response = pathname.startsWith('/api/')
+      ? NextResponse.json({ message: 'Invalid token.' }, { status: 401 })
+      : NextResponse.redirect(new URL('/auth/login', request.url));
+    
+    // Clear invalid token
+    response.cookies.delete('token');
+    
+    return response;
+  }
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*'],
+  matcher: ['/dashboard/:path*', '/api/user/:path*'],
 };

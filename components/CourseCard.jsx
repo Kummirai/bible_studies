@@ -10,10 +10,16 @@ const CourseCard = ({ course, heading }) => {
 
 
   useEffect(() => {
-    const token = document.cookie.split('; ').find(row => row.startsWith('token='));
-    if (token) {
-      setIsLoggedIn(true);
-    }
+    const checkAuth = async () => {
+      const res = await fetch('/api/auth/status');
+      if (res.ok) {
+        const { isLoggedIn } = await res.json();
+        setIsLoggedIn(isLoggedIn);
+      } else {
+        setIsLoggedIn(false);
+      }
+    };
+    checkAuth();
   }, []);
 
   const handleViewModules = async (courseCode) => {
