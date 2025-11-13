@@ -13,22 +13,52 @@ export default function ModuleDetailPage() {
   const searchParams = useSearchParams();
   const [selectedModule, setSelectedModule] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isCompleted, setIsCompleted] = useState(false);
+  const [completionStatus, setCompletionStatus] = useState(null);
 
   useEffect(() => {
     const storedData = sessionStorage.getItem("moduleDetail");
-    console.log("Stored data from sessionStorage:", storedData);
-
     if (storedData) {
       try {
         const moduleDetail = JSON.parse(storedData);
-        console.log("Parsed module detail:", moduleDetail);
         setSelectedModule(moduleDetail);
+        // Here you might want to check if the module is already completed
+        // For example, by fetching user progress and checking if this module's ID is in the completed list
       } catch (error) {
         console.error("Error parsing JSON:", error);
       }
     }
     setLoading(false);
   }, [searchParams]);
+
+  const handleMarkAsComplete = async () => {
+    const storedCourseData = sessionStorage.getItem("courseModules");
+    const courseCode = storedCourseData ? JSON.parse(storedCourseData).courseCode : null;
+    const moduleId = selectedModule?.module[0]?.module_id;
+
+    if (!courseCode || !moduleId) {
+      setCompletionStatus('error');
+      return;
+    }
+
+    try {
+      const res = await fetch('/api/user/progress', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ courseCode, moduleId }),
+      });
+
+      if (res.ok) {
+        setIsCompleted(true);
+        setCompletionStatus('success');
+      } else {
+        setCompletionStatus('error');
+      }
+    } catch (error) {
+      setCompletionStatus('error');
+    }
+  };
+
 
   if (loading) {
     return (
@@ -66,7 +96,6 @@ export default function ModuleDetailPage() {
   }
 
   const moduleData = selectedModule.module[0];
-  console.log(moduleData.quiz_questions[0]);
 
   return (
     <div className="max-w-6xl mx-auto">
@@ -199,6 +228,21 @@ export default function ModuleDetailPage() {
             />
           ))}
         </div>
+      </div>
+       <div className="p-5 text-center">
+        <button
+          onClick={handleMarkAsComplete}
+          disabled={isCompleted}
+          className={`px-6 py-2 text-white rounded-lg transition-colors ${
+            isCompleted
+              ? "bg-green-500 cursor-not-allowed"
+              : "bg-blue-500 hover:bg-blue-600"
+          }`}
+        >
+          {isCompleted ? "Completed" : "Mark as Complete"}
+        </button>
+        {completionStatus === 'success' && <p className="text-green-500 mt-2">Module marked as complete!</p>}
+        {completionStatus === 'error' && <p className="text-red-500 mt-2">Failed to mark as complete.</p>}
       </div>
     </div>
   );

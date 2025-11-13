@@ -2,13 +2,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Header = () => {
   const links = ["Home", "Curriculum", "About", "Contact"];
   const pathname = usePathname();
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = document.cookie.split('; ').find(row => row.startsWith('token='));
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, [pathname]); // Re-check on route change
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -47,21 +55,32 @@ const Header = () => {
                 </Link>
               </li>
             ))}
+             {isLoggedIn && (
+              <li className="max-sm:border-b-1  hover:border-b-2 hover:border-black">
+                <Link className="text-slate-900 font-semibold text-[0.85rem]" href="/dashboard">
+                  Dashboard
+                </Link>
+              </li>
+            )}
           </ul>
         </nav>
         <div className="hidden sm:flex items-center gap-4 text-white ">
-          <Link
-            href={"/auth/login"}
-            className="border border-slate-500 px-5 py-[0.2rem] text-black rounded-md hover:bg-slate-900 hover:text-white hover:cursor-pointer"
-          >
-            Log In
-          </Link>
-          <Link
-            href={"/auth/signup"}
-            className="bg-slate-900 border px-5 py-[0.2rem] rounded-md hover:cursor-pointer hover:bg-transparent hover:border hover:border-slate-500 hover:text-slate-900"
-          >
-            Sign Up
-          </Link>
+          {isLoggedIn ? null : (
+            <>
+              <Link
+                href={"/auth/login"}
+                className="border border-slate-500 px-5 py-[0.2rem] text-black rounded-md hover:bg-slate-900 hover:text-white hover:cursor-pointer"
+              >
+                Log In
+              </Link>
+              <Link
+                href={"/auth/signup"}
+                className="bg-slate-900 border px-5 py-[0.2rem] rounded-md hover:cursor-pointer hover:bg-transparent hover:border hover:border-slate-500 hover:text-slate-900"
+              >
+                Sign Up
+              </Link>
+            </>
+          )}
         </div>
         <div className="hidden max-sm:block">
           <Image
