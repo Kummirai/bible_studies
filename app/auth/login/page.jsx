@@ -1,7 +1,41 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-const page = () => {
+const Page = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const router = useRouter();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.message || "Something went wrong.");
+        return;
+      }
+
+      router.push("/dashboard");
+    } catch (error) {
+      setError("An error occurred. Please try again.");
+      console.error("Login error:", error);
+    }
+  };
+
   return (
     <div className="flex flex-col max-w-md p-4 mx-auto mt-10 ">
       <div>
@@ -12,21 +46,28 @@ const page = () => {
           Log in into your BS account
         </h2>
       </div>
-      <form action="">
-        <label htmlFor="" className="flex flex-col mb-2">
+      <form onSubmit={handleSubmit}>
+        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+        <label htmlFor="email" className="flex flex-col mb-2">
           <span className="text-slate-600 p-1">Email</span>
           <input
             type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="p-2 text-s text-slate-600 rounded-md border border-slate-300 bg-slate-100 outline-slate-400"
-            requislate
+            required
           />
         </label>
-        <label htmlFor="" className="flex flex-col mb-4">
+        <label htmlFor="password" className="flex flex-col mb-4">
           <span className="text-slate-600 p-1">Password</span>
           <input
             type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className="p-2 text-s text-slate-600 rounded-md border border-slate-300 bg-slate-100 outline-slate-400"
-            requislate
+            required
           />
         </label>
         <button
@@ -58,4 +99,5 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
+
