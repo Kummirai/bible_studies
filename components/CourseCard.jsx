@@ -1,10 +1,20 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 const CourseCard = ({ course, heading }) => {
   const router = useRouter();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [enrollmentStatus, setEnrollmentStatus] = useState(null);
+
+
+  useEffect(() => {
+    const token = document.cookie.split('; ').find(row => row.startsWith('token='));
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   const handleViewModules = async (courseCode) => {
     let modules = [];
@@ -31,12 +41,38 @@ const CourseCard = ({ course, heading }) => {
 
     router.push("/modules");
   };
+
+  const handleEnroll = async (courseCode) => {
+    try {
+      const res = await fetch('/api/user/enroll', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ courseCode }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setEnrollmentStatus('success');
+        setTimeout(() => setEnrollmentStatus(null), 3000);
+      } else {
+        setEnrollmentStatus('error');
+        setTimeout(() => setEnrollmentStatus(null), 3000);
+      }
+    } catch (error) {
+      setEnrollmentStatus('error');
+      setTimeout(() => setEnrollmentStatus(null), 3000);
+    }
+  };
+
   return (
     <div
       className={
         heading === "Electives"
-          ? "bg-slate-100 p-4 border flex flex-col justify-around items-start hover:border-slate-400 border-slate-200 rounded-2xl h-[230px]"
-          : "p-4 border flex flex-col justify-around items-start hover:border-slate-400 border-slate-200 rounded-2xl h-[230px]"
+          ? "bg-slate-100 p-4 border flex flex-col justify-between items-start hover:border-slate-400 border-slate-200 rounded-2xl h-[250px]"
+          : "p-4 border flex flex-col justify-between items-start hover:border-slate-400 border-slate-200 rounded-2xl h-[250px]"
       }
     >
       <div>
@@ -49,18 +85,31 @@ const CourseCard = ({ course, heading }) => {
         </h3>
       </div>
 
-      <p className="text-[0.9rem] text-slate-700 my-2 line-clamp-4">
+      <p className="text-[0.9rem] text-slate-700 my-2 line-clamp-3">
         {course.course.description}
       </p>
 
-      <button
-        onClick={() => handleViewModules(course.course.code)}
-        className="px-5 py-[6px] bg-slate-900 border rounded-lg border-slate-300 text-[0.85rem] text-white  hover:cursor-pointer  hover:border-slate-500  hover:text-slate-700 hover:bg-transparent"
-      >
-        View Modules
-      </button>
+      <div className="flex gap-2">
+        <button
+          onClick={() => handleViewModules(course.course.code)}
+          className="px-5 py-[6px] bg-slate-900 border rounded-lg border-slate-300 text-[0.85rem] text-white  hover:cursor-pointer  hover:border-slate-500  hover:text-slate-700 hover:bg-transparent"
+        >
+          View Modules
+        </button>
+        {isLoggedIn && (
+          <button
+            onClick={() => handleEnroll(course.course.code)}
+            className="px-5 py-[6px] bg-green-600 border rounded-lg border-green-300 text-[0.85rem] text-white  hover:cursor-pointer  hover:border-green-500  hover:text-green-700 hover:bg-transparent"
+          >
+            Enroll
+          </button>
+        )}
+      </div>
+      {enrollmentStatus === 'success' && <p className="text-green-500 text-sm mt-2">Enrolled successfully!</p>}
+      {enrollmentStatus === 'error' && <p className="text-red-500 text-sm mt-2">Failed to enroll.</p>}
     </div>
   );
 };
 
 export default CourseCard;
+
