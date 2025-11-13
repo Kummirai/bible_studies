@@ -1,4 +1,3 @@
-
 import { NextResponse } from 'next/server';
 import { jwtVerify } from 'jose';
 import clientPromise from '@/lib/mongodb';

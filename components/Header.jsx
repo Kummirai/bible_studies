@@ -12,20 +12,10 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const checkAuthStatus = async () => {
-      try {
-        const res = await fetch('/api/auth/status');
-        if (res.ok) {
-          const { isLoggedIn } = await res.json();
-          setIsLoggedIn(isLoggedIn);
-        } else {
-          setIsLoggedIn(false);
-        }
-      } catch {
-        setIsLoggedIn(false);
-      }
-    };
-    checkAuthStatus();
+    const token = document.cookie.split('; ').find(row => row.startsWith('token='));
+    if (token) {
+      setIsLoggedIn(true);
+    }
   }, [pathname]); // Re-check on route change
 
   const toggleMenu = () => {
