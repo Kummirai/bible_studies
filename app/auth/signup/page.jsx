@@ -1,7 +1,53 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-const page = () => {
+const Page = () => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const router = useRouter();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    setSuccess("");
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, email, password }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.message || "Something went wrong.");
+        return;
+      }
+
+      setSuccess(data.message);
+      setTimeout(() => {
+        router.push("/auth/login");
+      }, 2000);
+    } catch (error) {
+      setError("An error occurred. Please try again.");
+      console.error("Signup error:", error);
+    }
+  };
+
   return (
     <div className="flex flex-col max-w-md p-4 mx-auto">
       <div>
@@ -14,37 +60,53 @@ const page = () => {
           Sign Up for a BS account
         </h2>
       </div>
-      <form action="">
-        <label htmlFor="" className="flex flex-col mb-2">
+      <form onSubmit={handleSubmit}>
+        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+        {success && (
+          <p className="text-green-500 text-center mb-4">{success}</p>
+        )}
+        <label htmlFor="username" className="flex flex-col mb-2">
           <span className="text-slate-600 p-1">Username</span>
           <input
-            type=""
+            type="text"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             className="p-2 text-s text-slate-600 rounded-md border border-slate-300 bg-slate-100 outline-slate-400"
-            requislate
+            required
           />
         </label>
-        <label htmlFor="" className="flex flex-col mb-2">
+        <label htmlFor="email" className="flex flex-col mb-2">
           <span className="text-slate-600 p-1">Email</span>
           <input
             type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="p-2 text-s text-slate-600 rounded-md border border-slate-300 bg-slate-100 outline-slate-400"
-            requislate
+            required
           />
         </label>
-        <label htmlFor="" className="flex flex-col mb-4">
+        <label htmlFor="password" className="flex flex-col mb-4">
           <span className="text-slate-600 p-1">Password</span>
           <input
             type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className="p-2 text-s text-slate-600 rounded-md border border-slate-300 bg-slate-100 outline-slate-400"
-            requislate
+            required
           />
         </label>
-        <label htmlFor="" className="flex flex-col mb-4">
+        <label htmlFor="confirmPassword" className="flex flex-col mb-4">
           <span className="text-slate-600 p-1">Confirm password</span>
           <input
             type="password"
+            id="confirmPassword"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             className="p-2 text-s text-slate-600 rounded-md border border-slate-300 bg-slate-100 outline-slate-400"
-            requislate
+            required
           />
         </label>
         <button
@@ -76,4 +138,5 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
+
